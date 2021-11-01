@@ -1,0 +1,12 @@
+.vscode/
+
+# Logs
+*.log
+npm-debug.log
+
+# Runtime data
+tmp
+build
+
+# Dependency directory
+node_modules

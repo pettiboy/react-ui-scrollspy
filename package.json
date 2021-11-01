@@ -1,0 +1,38 @@
+{
+  "name": "react-ui-scrollspy",
+  "version": "0.1.0",
+  "description": "## Comands",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -c -w"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rollup": "^2.59.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "^4.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pettiboy/react-ui-scrollspy.git"
+  },
+  "author": "Hussain Pettiwala",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pettiboy/react-ui-scrollspy/issues"
+  },
+  "homepage": "https://github.com/pettiboy/react-ui-scrollspy#readme"
+}

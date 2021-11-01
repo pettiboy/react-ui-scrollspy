@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   MutableRefObject,
   ReactNode,
@@ -5,8 +6,8 @@ import {
   useRef,
   useState,
 } from "react";
-import { isVisible } from "./isVisible";
-import { throttle } from "./throttle";
+import { isVisible } from "../utils/isVisible";
+import { throttle } from "../utils/throttle";
 
 interface ScrollSpyProps {
   children: ReactNode;

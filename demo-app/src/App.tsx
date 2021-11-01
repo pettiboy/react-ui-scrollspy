@@ -1,6 +1,6 @@
 import Center from "./components/Center/Center";
 import Navigation from "./components/Navigation/Navigation";
-import ScrollSpy from "./components/ScrollSpy/ScrollSpy";
+import ScrollSpy from "react-ui-scrollspy";
 
 function App() {
   return (
