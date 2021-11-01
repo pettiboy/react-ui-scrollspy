@@ -69,6 +69,7 @@ const ScrollSpy = ({
           // and see if its ID matches the ID we got from the viewport
           if (attrId === changeHighlightedItemId) {
             el.classList.add("active-scroll-spy");
+            window.history.pushState({}, "", `#${changeHighlightedItemId}`);
           }
         });
       }
