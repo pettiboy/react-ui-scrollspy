@@ -9,17 +9,18 @@ import {
 interface ScrollSpyProps {
   children: ReactNode;
   navContainerRef?: MutableRefObject<HTMLDivElement | null>;
+  scrollThrottle?: number;
 }
 
-const ScrollSpy = ({ children, navContainerRef }: ScrollSpyProps) => {
+const ScrollSpy = ({
+  children,
+  navContainerRef,
+  scrollThrottle = 500,
+}: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const [offset, setOffset] = useState(0);
   const [navContainerItems, setNavContainerItems] = useState<
     NodeListOf<Element> | undefined
   >();
-
-  // Debug: to check how many times setOffset is called, hence calling the checkAndUpdateActiveScrollSpy
-  const countRef = useRef(0);
 
   // To get the nav container items depending on whether the parent ref for the nav container is passed or not
   useEffect(() => {
@@ -38,17 +39,17 @@ const ScrollSpy = ({ children, navContainerRef }: ScrollSpyProps) => {
     window.onscroll = () => {
       didScroll = true;
     };
+
     setInterval(() => {
       if (didScroll) {
-        setOffset(window.pageYOffset);
-        countRef.current++;
+        checkAndUpdateActiveScrollSpy();
       }
-    }, 500);
-  }, []);
+    }, scrollThrottle);
+  }, [window.onscroll]);
 
   useEffect(() => {
     checkAndUpdateActiveScrollSpy();
-  }, [navContainerItems, offset]);
+  }, [navContainerItems]);
 
   const checkAndUpdateActiveScrollSpy = () => {
     const scrollParentContainer = scrollContainerRef.current;
@@ -94,12 +95,7 @@ const ScrollSpy = ({ children, navContainerRef }: ScrollSpyProps) => {
     );
   };
 
-  return (
-    <>
-      <div style={{ position: "fixed" }}>{countRef.current}</div>
-      <div ref={scrollContainerRef}>{children}</div>
-    </>
-  );
+  return <div ref={scrollContainerRef}>{children}</div>;
 };
 
 export default ScrollSpy;
