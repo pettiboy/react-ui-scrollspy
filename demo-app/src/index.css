@@ -13,10 +13,20 @@ code {
 }
 
 .active-scroll-spy {
-  background-color: beige;
+  background-color: yellowgreen;
   border-radius: 15px;
 }
 .ss-item {
   padding: 30px;
   margin: 10px;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+/* media query for screens less than 500px */
+@media screen and (max-width: 500px) {
+  .ss-item {
+    padding: 17px;
+  }
 }
