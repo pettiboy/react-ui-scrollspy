@@ -18,8 +18,10 @@ const ScrollSpy = ({ children, navContainerRef }: ScrollSpyProps) => {
     NodeListOf<Element> | undefined
   >();
 
+  // Debug: to check how many times setOffset is called, hence calling the checkAndUpdateActiveScrollSpy
   const countRef = useRef(0);
 
+  // To get the nav container items depending on whether the parent ref for the nav container is passed or not
   useEffect(() => {
     if (navContainerRef) {
       setNavContainerItems(
@@ -30,6 +32,7 @@ const ScrollSpy = ({ children, navContainerRef }: ScrollSpyProps) => {
     }
   }, [navContainerRef]);
 
+  // To get the offset of the scroll container
   useEffect(() => {
     let didScroll = false;
     window.onscroll = () => {
@@ -43,17 +46,11 @@ const ScrollSpy = ({ children, navContainerRef }: ScrollSpyProps) => {
     }, 500);
   }, []);
 
-  const isVisible = (el: HTMLElement) => {
-    const rect = el.getBoundingClientRect();
-    const leniency = window.innerHeight * 0.5;
-    console.log(rect.top + leniency, rect.bottom - leniency);
-    console.log(0, window.innerHeight);
-    return (
-      rect.top + leniency >= 0 && rect.bottom - leniency <= window.innerHeight
-    );
-  };
-
   useEffect(() => {
+    checkAndUpdateActiveScrollSpy();
+  }, [navContainerItems, offset]);
+
+  const checkAndUpdateActiveScrollSpy = () => {
     const scrollParentContainer = scrollContainerRef.current;
     // if there are no children, return
     if (!(scrollParentContainer && navContainerItems)) return;
@@ -82,8 +79,20 @@ const ScrollSpy = ({ children, navContainerRef }: ScrollSpyProps) => {
         });
       }
     }
-    return () => {};
-  }, [navContainerItems, offset]);
+  };
+
+  // to check if the element is in viewport
+  const isVisible = (el: HTMLElement) => {
+    const rectInView = el.getBoundingClientRect();
+
+    // this decides how much of the element should be visible
+    const leniency = window.innerHeight * 0.5;
+
+    return (
+      rectInView.top + leniency >= 0 &&
+      rectInView.bottom - leniency <= window.innerHeight
+    );
+  };
 
   return (
     <>
