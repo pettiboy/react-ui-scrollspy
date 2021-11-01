@@ -5,6 +5,8 @@ import {
   useRef,
   useState,
 } from "react";
+import { isVisible } from "./isVisible";
+import { throttle } from "./throttle";
 
 interface ScrollSpyProps {
   children: ReactNode;
@@ -38,20 +40,6 @@ const ScrollSpy = ({
     checkAndUpdateActiveScrollSpy();
   }, [navContainerItems]);
 
-  function throttle(callback: () => void, limit: number) {
-    var tick = false;
-
-    return () => {
-      if (!tick) {
-        callback();
-        tick = true;
-        setTimeout(function () {
-          tick = false;
-        }, limit);
-      }
-    };
-  }
-
   const checkAndUpdateActiveScrollSpy = () => {
     const scrollParentContainer = scrollContainerRef.current;
     // if there are no children, return
@@ -65,8 +53,6 @@ const ScrollSpy = ({
 
       // check if the element is in the viewport
       if (isVisible(useChild)) {
-        console.log("ask;jfdllf;ajdlsjk;");
-
         // if so, get its ID
         const changeHighlightedItemId = useChild.id;
 
@@ -89,19 +75,6 @@ const ScrollSpy = ({
     "scroll",
     throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
   );
-
-  // to check if the element is in viewport
-  const isVisible = (el: HTMLElement) => {
-    const rectInView = el.getBoundingClientRect();
-
-    // this decides how much of the element should be visible
-    const leniency = window.innerHeight * 0.5;
-
-    return (
-      rectInView.top + leniency >= 0 &&
-      rectInView.bottom - leniency <= window.innerHeight
-    );
-  };
 
   return <div ref={scrollContainerRef}>{children}</div>;
 };
