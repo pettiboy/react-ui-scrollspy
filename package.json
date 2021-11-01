@@ -1,6 +1,6 @@
 {
   "name": "react-ui-scrollspy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "## Comands",
   "main": "dist/index.js",
   "scripts": {
