@@ -15,7 +15,7 @@ interface ScrollSpyProps {
 const ScrollSpy = ({
   children,
   navContainerRef,
-  scrollThrottle = 500,
+  scrollThrottle = 300,
 }: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [navContainerItems, setNavContainerItems] = useState<
@@ -33,23 +33,24 @@ const ScrollSpy = ({
     }
   }, [navContainerRef]);
 
-  // To get the offset of the scroll container
-  useEffect(() => {
-    let didScroll = false;
-    window.onscroll = () => {
-      didScroll = true;
-    };
-
-    setInterval(() => {
-      if (didScroll) {
-        checkAndUpdateActiveScrollSpy();
-      }
-    }, scrollThrottle);
-  }, [window.onscroll]);
-
+  // fire once after nav container items are set
   useEffect(() => {
     checkAndUpdateActiveScrollSpy();
   }, [navContainerItems]);
+
+  function throttle(callback: () => void, limit: number) {
+    var tick = false;
+
+    return () => {
+      if (!tick) {
+        callback();
+        tick = true;
+        setTimeout(function () {
+          tick = false;
+        }, limit);
+      }
+    };
+  }
 
   const checkAndUpdateActiveScrollSpy = () => {
     const scrollParentContainer = scrollContainerRef.current;
@@ -64,6 +65,8 @@ const ScrollSpy = ({
 
       // check if the element is in the viewport
       if (isVisible(useChild)) {
+        console.log("ask;jfdllf;ajdlsjk;");
+
         // if so, get its ID
         const changeHighlightedItemId = useChild.id;
 
@@ -81,6 +84,11 @@ const ScrollSpy = ({
       }
     }
   };
+
+  window.addEventListener(
+    "scroll",
+    throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
+  );
 
   // to check if the element is in viewport
   const isVisible = (el: HTMLElement) => {
