@@ -8,15 +8,27 @@ import {
 
 interface ScrollSpyProps {
   children: ReactNode;
-  navContainerRef: MutableRefObject<HTMLDivElement | null>;
+  navContainerRef?: MutableRefObject<HTMLDivElement | null>;
 }
 
 const ScrollSpy = ({ children, navContainerRef }: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-
   const [offset, setOffset] = useState(0);
+  const [navContainerItems, setNavContainerItems] = useState<
+    NodeListOf<Element> | undefined
+  >();
 
   const countRef = useRef(0);
+
+  useEffect(() => {
+    if (navContainerRef) {
+      setNavContainerItems(
+        navContainerRef.current?.querySelectorAll("[data-to-scrollspy-id]")
+      );
+    } else {
+      setNavContainerItems(document.querySelectorAll("[data-to-scrollspy-id]"));
+    }
+  }, [navContainerRef]);
 
   useEffect(() => {
     let didScroll = false;
@@ -41,53 +53,43 @@ const ScrollSpy = ({ children, navContainerRef }: ScrollSpyProps) => {
     );
   };
 
-  let useChildren = Array(children);
-
   useEffect(() => {
-    const navContainerItems =
-      navContainerRef.current?.querySelectorAll(".ss-item");
-    const scrollDiv =
-      scrollContainerRef.current?.querySelectorAll(".is-scroll-child");
+    const scrollParentContainer = scrollContainerRef.current;
+    // if there are no children, return
+    if (!(scrollParentContainer && navContainerItems)) return;
 
-    if (scrollDiv && navContainerItems) {
-      scrollDiv.forEach((el) => {
-        el.childNodes.forEach((child) => {
-          const useChild = child as HTMLDivElement;
-          console.log(useChild);
+    for (let i = 0; i < scrollParentContainer.children.length; i++) {
+      const child = scrollParentContainer.children.item(i);
+      if (!child) continue;
 
-          // check if the element is in the viewport
-          if (isVisible(useChild)) {
-            // if so, get its ID
-            const changeHighlightedItemId = useChild.id;
-            console.log(changeHighlightedItemId);
+      const useChild = child as HTMLDivElement;
 
-            // now loop over each element in the nav Container
-            navContainerItems.forEach((el) => {
-              // remove the "active" class from all of them
-              el.classList.remove("active-scroll-spy");
-              const attrId = el.getAttribute("data-to-scrollspy-id");
+      // check if the element is in the viewport
+      if (isVisible(useChild)) {
+        // if so, get its ID
+        const changeHighlightedItemId = useChild.id;
 
-              // and see if its ID matches the ID we got from the viewport
-              if (attrId === changeHighlightedItemId) {
-                el.classList.add("active-scroll-spy");
-              }
-            });
+        // now loop over each element in the nav Container
+        navContainerItems.forEach((el) => {
+          // remove the "active" class from all of them
+          el.classList.remove("active-scroll-spy");
+          const attrId = el.getAttribute("data-to-scrollspy-id");
+
+          // and see if its ID matches the ID we got from the viewport
+          if (attrId === changeHighlightedItemId) {
+            el.classList.add("active-scroll-spy");
           }
         });
-      });
+      }
     }
     return () => {};
-  }, [navContainerRef, offset]);
+  }, [navContainerItems, offset]);
 
   return (
-    <div ref={scrollContainerRef}>
+    <>
       <div style={{ position: "fixed" }}>{countRef.current}</div>
-      {useChildren.map((child, i) => (
-        <div className="is-scroll-child" key={i}>
-          {child}
-        </div>
-      ))}
-    </div>
+      <div ref={scrollContainerRef}>{children}</div>
+    </>
   );
 };
 

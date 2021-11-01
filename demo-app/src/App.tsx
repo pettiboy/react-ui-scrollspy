@@ -20,7 +20,7 @@ function App() {
           </div>
         </div>
       </div>
-      <ScrollSpy navContainerRef={navContainerRef}>
+      <ScrollSpy>
         <Center id="orange" backgroundColor={"orange"}>
           <h1>Hello World</h1>
         </Center>
