@@ -33,11 +33,15 @@ const ScrollSpy = ({
     } else {
       setNavContainerItems(document.querySelectorAll("[data-to-scrollspy-id]"));
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navContainerRef]);
 
   // fire once after nav container items are set
   useEffect(() => {
     checkAndUpdateActiveScrollSpy();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navContainerItems]);
 
   const checkAndUpdateActiveScrollSpy = () => {

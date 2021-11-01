@@ -1,11 +1,8 @@
-import React, { useRef } from "react";
 import Center from "./components/Center/Center";
 import Navigation from "./components/Navigation/Navigation";
 import ScrollSpy from "./components/ScrollSpy/ScrollSpy";
 
 function App() {
-  const navContainerRef = useRef<HTMLDivElement | null>(null);
-
   return (
     <div>
       <Navigation />
