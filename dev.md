@@ -26,8 +26,8 @@ git commit -m "‼️ BREAKING: "
 - [x] callbacks
 - [x] offset props
 - [x] relative positioning handled
-- [ ] customise data attributes
-- [ ] description, keywords
+- [x] customise data attributes
+- [x] description, keywords
 - [ ] deploy test website on github pages
 - [x] update docs
 - [ ] deploy as version 2

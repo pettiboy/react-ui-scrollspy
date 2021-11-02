@@ -1,6 +1,8 @@
 import Center from "./components/Center/Center";
 import Navigation from "./components/Navigation/Navigation";
+// eslint-disable-next-line
 import ScrollSpy from "react-ui-scrollspy";
+// eslint-disable-next-line
 import ScrollSpyDev from "./components/src";
 
 function App() {
@@ -8,7 +10,7 @@ function App() {
     <div>
       <Navigation />
 
-      <ScrollSpyDev scrollThrottle={100}>
+      <ScrollSpy scrollThrottle={100}>
         <Center id="orange" backgroundColor={"orange"}>
           <h1>Orange</h1>
         </Center>
@@ -21,7 +23,7 @@ function App() {
         <Center id="green" backgroundColor={"green"}>
           <h1>Green</h1>
         </Center>
-      </ScrollSpyDev>
+      </ScrollSpy>
     </div>
   );
 }

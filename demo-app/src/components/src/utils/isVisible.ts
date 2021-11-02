@@ -1,5 +1,3 @@
-import { MutableRefObject } from "react";
-
 // to check if the element is in viewport
 export const isVisible = (
   el: HTMLElement,

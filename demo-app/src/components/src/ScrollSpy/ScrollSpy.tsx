@@ -11,22 +11,46 @@ import { throttle } from "../utils/throttle";
 
 interface ScrollSpyProps {
   children: ReactNode;
+
+  // refs
   navContainerRef?: MutableRefObject<HTMLDivElement | null>;
   parentScrollContainerRef?: MutableRefObject<HTMLDivElement | null>;
+
+  // throttle
   scrollThrottle?: number;
+
+  // callback
   onUpdateCallback?: (id: string) => void;
+
+  // offsets
   offsetTop?: number;
   offsetBottom?: number;
+
+  // customize attributes
+  useDataAttribute?: string;
+  activeClass?: string;
 }
 
 const ScrollSpy = ({
   children,
+
+  // refs
   navContainerRef,
   parentScrollContainerRef,
-  onUpdateCallback,
+
+  // throttle
   scrollThrottle = 300,
+
+  // callback
+  onUpdateCallback,
+
+  // offsets
   offsetTop = 0,
   offsetBottom = 0,
+
+  // customize attributes
+  useDataAttribute = "to-scrollspy-id",
+  activeClass = "active-scroll-spy",
 }: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [navContainerItems, setNavContainerItems] = useState<NodeListOf<Element> | undefined>(); // prettier-ignore
@@ -37,13 +61,15 @@ const ScrollSpy = ({
 
   // To get the nav container items depending on whether the parent ref for the nav container is passed or not
   useEffect(() => {
-    if (navContainerRef) {
-      setNavContainerItems(
-        navContainerRef.current?.querySelectorAll("[data-to-scrollspy-id]")
-      );
-    } else {
-      setNavContainerItems(document.querySelectorAll("[data-to-scrollspy-id]"));
-    }
+    navContainerRef
+      ? setNavContainerItems(
+          navContainerRef.current?.querySelectorAll(
+            `[data-${useDataAttribute}]`
+          )
+        )
+      : setNavContainerItems(
+          document.querySelectorAll(`[data-${useDataAttribute}]`)
+        );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navContainerRef]);
@@ -85,20 +111,20 @@ const ScrollSpy = ({
 
         // now loop over each element in the nav Container
         navContainerItems.forEach((el) => {
-          const attrId = el.getAttribute("data-to-scrollspy-id");
+          const attrId = el.getAttribute(`data-${useDataAttribute}`);
 
           // if the element contains 'active' the class remove it
-          if (el.classList.contains("active-scroll-spy")) {
-            el.classList.remove("active-scroll-spy");
+          if (el.classList.contains(activeClass)) {
+            el.classList.remove(activeClass);
           }
 
           // check if its ID matches the ID we got from the viewport
           // also make sure it does not already contain the 'active' class
           if (
             attrId === changeHighlightedItemId &&
-            !el.classList.contains("active-scroll-spy")
+            !el.classList.contains(activeClass)
           ) {
-            el.classList.add("active-scroll-spy");
+            el.classList.add(activeClass);
 
             if (onUpdateCallback) {
               onUpdateCallback(changeHighlightedItemId);

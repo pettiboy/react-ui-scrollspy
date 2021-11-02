@@ -24,7 +24,7 @@ OR
 yarn add react-ui-scrollspy
 ```
 
-## ⚙️ Getting started
+## ⚙️ Usage
 
 1. In your navigation component
 
@@ -68,15 +68,44 @@ import ScrollSpy from "react-ui-scrollspy";
 
 ## 💡 Props
 
-| Attributes                 | Type                                       | Description                                                                                                            | Default | Required |
-| :------------------------- | :----------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- | :------ | :------- |
-| `children`                 | `ReactNode`                                | Each direct child `Element` should contain an `id`                                                                     | -       | yes      |
-| `scrollThrottle`           | `number`                                   | in `milliseconds` to throttle the `onscroll` event. Lower the number, better the response, higher the performance cost | 300     | no       |
-| `navContainerRef`          | `MutableRefObject<HTMLDivElement \| null>` | `ref` to your navigation container containing items with `data-to-scrollspy-id` attributes                             | -       | no       |
-| `onUpdateCallback`         | `(id: string) => void`                     | Executes this function whenever you scroll to an `Element`, callback returns the `id` of that `Element` as well        | -       | no       |
-| `parentScrollContainerRef` | `MutableRefObject<HTMLDivElement \| null>` | If you want to spy only on a particular scrollable `container (Element)` then pass a ref of the same to this prop      | -       | no       |
-| `offsetTop`                | `number`                                   | spy will be fired when it has been scrolled `offsetTop` beyond `50%` to the top of the containing element              | 0       | no       |
-| `offsetBottom`             | `number`                                   | spy will be fired when it has been scrolled `offsetBottom` beyond `50%` to the bottom of the containing element        | 0       | no       |
+### Children
+
+| Attributes | Type        | Description                                        | Default | Required |
+| :--------- | :---------- | :------------------------------------------------- | :------ | :------- |
+| `children` | `ReactNode` | Each direct child `Element` should contain an `id` | -       | yes      |
+
+### Refs
+
+| Attributes                 | Type                                              | Description                                                                                                       | Default | Required |
+| :------------------------- | :------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------- | :------ | :------- |
+| `navContainerRef`          | MutableRefObject<br><HTMLDivElement \| null><br/> | `ref` to your navigation container containing items with `data-to-scrollspy-id` attributes                        | -       | no       |
+| `parentScrollContainerRef` | MutableRefObject<br><HTMLDivElement \| null><br/> | If you want to spy only on a particular scrollable `container (Element)` then pass a ref of the same to this prop | -       | no       |
+
+### Throlle
+
+| Attributes       | Type     | Description                                                                                                            | Default | Required |
+| :--------------- | :------- | :--------------------------------------------------------------------------------------------------------------------- | :------ | :------- |
+| `scrollThrottle` | `number` | In `milliseconds` to throttle the `onscroll` event. Lower the number, better the response, higher the performance cost | `300`   | no       |
+
+### Callback
+
+| Attributes         | Type                   | Description                                                                                                     | Default | Required |
+| :----------------- | :--------------------- | :-------------------------------------------------------------------------------------------------------------- | :------ | :------- |
+| `onUpdateCallback` | `(id: string) => void` | Executes this function whenever you scroll to an `Element`, callback returns the `id` of that `Element` as well | -       | no       |
+
+### Offsets
+
+| Attributes     | Type     | Description                                                                                                     | Default | Required |
+| :------------- | :------- | :-------------------------------------------------------------------------------------------------------------- | :------ | :------- |
+| `offsetTop`    | `number` | Spy will be fired when it has been scrolled `offsetTop` beyond `50%` to the top of the containing element       | `0`     | no       |
+| `offsetBottom` | `number` | Spy will be fired when it has been scrolled `offsetBottom` beyond `50%` to the bottom of the containing element | `0`     | no       |
+
+### Customize Attributes
+
+| Attributes         | Type     | Description                                                  | Default               | Required |
+| :----------------- | :------- | :----------------------------------------------------------- | :-------------------- | :------- |
+| `useDataAttribute` | `string` | To customize the string after `data-`                        | `"to-scrollspy-id"`   | no       |
+| `activeClass`      | `string` | To customize the `class` added when the `Element` is in view | `"active-scroll-spy"` | no       |
 
 ## 📝 Authors
 
