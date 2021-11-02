@@ -25,5 +25,4 @@ git commit -m "‼️ BREAKING: "
 
 ## TODO
 
-- [ ] deploy test website on github pages
-- [ ] deploy as version 2
+- [ ] view on github button on website

@@ -84,22 +84,22 @@ import ScrollSpy from "react-ui-scrollspy";
 
 ### 🔧 Refs
 
-| Attributes                 | Type                                              | Description                                                                                                       | Default | Required |
-| :------------------------- | :------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------- | :------ | :------- |
-| `navContainerRef`          | MutableRefObject<br><HTMLDivElement \| null><br/> | `ref` to your navigation container containing items with `data-to-scrollspy-id` attributes                        | -       | no       |
-| `parentScrollContainerRef` | MutableRefObject<br><HTMLDivElement \| null><br/> | If you want to spy only on a particular scrollable `container (Element)` then pass a ref of the same to this prop | -       | no       |
+| Attributes                 | Type                                              | Description                                                                                             | Default | Required |
+| :------------------------- | :------------------------------------------------ | :------------------------------------------------------------------------------------------------------ | :------ | :------- |
+| `navContainerRef`          | MutableRefObject<br><HTMLDivElement \| null><br/> | `ref` to your navigation container containing items with `data-to-scrollspy-id` attributes              | -       | no       |
+| `parentScrollContainerRef` | MutableRefObject<br><HTMLDivElement \| null><br/> | If you want to spy only on a particular scrollable `container (Element)` then pass its ref to this prop | -       | no       |
 
-### 🔧 Throlle
+### 🔧 Throttle
 
-| Attributes       | Type     | Description                                                                                                            | Default | Required |
-| :--------------- | :------- | :--------------------------------------------------------------------------------------------------------------------- | :------ | :------- |
-| `scrollThrottle` | `number` | In `milliseconds` to throttle the `onscroll` event. Lower the number, better the response, higher the performance cost | `300`   | no       |
+| Attributes       | Type     | Description                                                                                                                 | Default | Required |
+| :--------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------- | :------ | :------- |
+| `scrollThrottle` | `number` | In `milliseconds` to throttle the `onscroll` event. Lower the number, better the response time, higher the performance cost | `300`   | no       |
 
 ### 🔧 Callback
 
-| Attributes         | Type                   | Description                                                                                                     | Default | Required |
-| :----------------- | :--------------------- | :-------------------------------------------------------------------------------------------------------------- | :------ | :------- |
-| `onUpdateCallback` | `(id: string) => void` | Executes this function whenever you scroll to an `Element`, callback returns the `id` of that `Element` as well | -       | no       |
+| Attributes         | Type                   | Description                                                                                                                        | Default | Required |
+| :----------------- | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------- | :------ | :------- |
+| `onUpdateCallback` | `(id: string) => void` | Executes this function whenever you scroll to a new ScrollSpy child `Element`, callback returns the `id` of that `Element` as well | -       | no       |
 
 ### 🔧 Offsets
 
@@ -110,10 +110,10 @@ import ScrollSpy from "react-ui-scrollspy";
 
 ### 🔧 Customize Attributes
 
-| Attributes         | Type     | Description                                                  | Default               | Required |
-| :----------------- | :------- | :----------------------------------------------------------- | :-------------------- | :------- |
-| `useDataAttribute` | `string` | To customize the string after `data-`                        | `"to-scrollspy-id"`   | no       |
-| `activeClass`      | `string` | To customize the `class` added when the `Element` is in view | `"active-scroll-spy"` | no       |
+| Attributes         | Type     | Description                                               | Default               | Required |
+| :----------------- | :------- | :-------------------------------------------------------- | :-------------------- | :------- |
+| `useDataAttribute` | `string` | To customize the string after `data-`                     | `"to-scrollspy-id"`   | no       |
+| `activeClass`      | `string` | To customize the `class` added when the `Element` in view | `"active-scroll-spy"` | no       |
 
 ## 📝 Authors
 

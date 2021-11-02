@@ -1,7 +1,7 @@
 {
   "name": "react-ui-scrollspy",
-  "version": "1.0.2",
-  "description": "Simple, Easy To Use and Customisable ScrollSpy component for react with callback, typescript, throttle support among others",
+  "version": "2.0.0",
+  "description": "Simple, Easy To Use and Customisable ScrollSpy component for react with callback, typescript and throttle support among others",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
@@ -20,6 +20,8 @@
   "keywords": [
     "react",
     "react-component",
+    "react-ui",
+    "react-ui-scrollspy",
     "ui",
     "typescript",
     "component",
