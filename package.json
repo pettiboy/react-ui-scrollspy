@@ -1,5 +1,5 @@
 {
-  "name": "react-ui-scrollspy",
+  "name": "@pettiboy/react-ui-scrollspy",
   "version": "2.0.0",
   "description": "Simple, Easy To Use and Customisable ScrollSpy component for react with callback, typescript and throttle support among others",
   "main": "dist/index.js",
@@ -7,9 +7,13 @@
     "build": "rollup -c",
     "start": "rollup -c -w"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pettiboy/react-ui-scrollspy.git"
+    "url": "git+https://github.com/pettiboy/react-ui-scrollspy.git",
+    "directory": "react-ui-scrollspy"
   },
   "bugs": {
     "url": "https://github.com/pettiboy/react-ui-scrollspy/issues"
