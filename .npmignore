@@ -17,3 +17,4 @@ src/
 rollup.config.js
 tsconfig.json
 dev.md
+.env
