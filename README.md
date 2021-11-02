@@ -68,12 +68,15 @@ import ScrollSpy from "react-ui-scrollspy";
 
 ## 💡 Props
 
-| Attributes         | Type                                       | Description                                                                                                            | Default | Required |
-| :----------------- | :----------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- | :------ | :------- |
-| `scrollThrottle`   | `number`                                   | in `milliseconds` to throttle the `onscroll` event. Lower the number, better the response, higher the performance cost | 300     | no       |
-| `children`         | `ReactNode`                                | -                                                                                                                      | -       | yes      |
-| `navContainerRef`  | `MutableRefObject<HTMLDivElement \| null>` | `ref` to your navigation container containing items with `data-to-scrollspy-id` attributes                             | -       | no       |
-| `onUpdateCallback` | `(id: string) => void`                     | Executes this function whenever you scroll to an `Element`, callback returns the `id` of that `Element` as well        | -       | no       |
+| Attributes                 | Type                                       | Description                                                                                                            | Default | Required |
+| :------------------------- | :----------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- | :------ | :------- |
+| `children`                 | `ReactNode`                                | Each direct child `Element` should contain an `id`                                                                     | -       | yes      |
+| `scrollThrottle`           | `number`                                   | in `milliseconds` to throttle the `onscroll` event. Lower the number, better the response, higher the performance cost | 300     | no       |
+| `navContainerRef`          | `MutableRefObject<HTMLDivElement \| null>` | `ref` to your navigation container containing items with `data-to-scrollspy-id` attributes                             | -       | no       |
+| `onUpdateCallback`         | `(id: string) => void`                     | Executes this function whenever you scroll to an `Element`, callback returns the `id` of that `Element` as well        | -       | no       |
+| `parentScrollContainerRef` | `MutableRefObject<HTMLDivElement \| null>` | If you want to spy only on a particular scrollable `container (Element)` then pass a ref of the same to this prop      | -       | no       |
+| `offsetTop`                | `number`                                   | spy will be fired when it has been scrolled `offsetTop` beyond `50%` to the top of the containing element              | 0       | no       |
+| `offsetBottom`             | `number`                                   | spy will be fired when it has been scrolled `offsetBottom` beyond `50%` to the bottom of the containing element        | 0       | no       |
 
 ## 📝 Authors
 

@@ -12,15 +12,21 @@ import { throttle } from "../utils/throttle";
 interface ScrollSpyProps {
   children: ReactNode;
   navContainerRef?: MutableRefObject<HTMLDivElement | null>;
+  parentScrollContainerRef?: MutableRefObject<HTMLDivElement | null>;
   scrollThrottle?: number;
   onUpdateCallback?: (id: string) => void;
+  offsetTop?: number;
+  offsetBottom?: number;
 }
 
 const ScrollSpy = ({
   children,
   navContainerRef,
+  parentScrollContainerRef,
   onUpdateCallback,
   scrollThrottle = 300,
+  offsetTop = 0,
+  offsetBottom = 0,
 }: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [navContainerItems, setNavContainerItems] = useState<NodeListOf<Element> | undefined>(); // prettier-ignore
@@ -58,12 +64,19 @@ const ScrollSpy = ({
     // loop over all children in scroll container
     for (let i = 0; i < scrollParentContainer.children.length; i++) {
       // get child element
-      const child = scrollParentContainer.children.item(i);
-      if (!child) continue;
-      const useChild = child as HTMLDivElement;
+      const useChild = scrollParentContainer.children.item(i) as HTMLDivElement;
+
+      const elementIsVisible = parentScrollContainerRef
+        ? isVisible(
+            useChild,
+            offsetTop,
+            offsetBottom,
+            parentScrollContainerRef?.current
+          )
+        : isVisible(useChild, offsetTop, offsetBottom);
 
       // check if the element is in the viewport
-      if (isVisible(useChild)) {
+      if (elementIsVisible) {
         // if so, get its ID
         const changeHighlightedItemId = useChild.id;
 
@@ -100,10 +113,18 @@ const ScrollSpy = ({
     }
   };
 
-  window.addEventListener(
-    "scroll",
-    throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
-  );
+  // listen for scroll event
+  parentScrollContainerRef
+    ? // if ref for scrollable div is provided
+      parentScrollContainerRef.current?.addEventListener(
+        "scroll",
+        throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
+      )
+    : // else listen for scroll in window
+      window.addEventListener(
+        "scroll",
+        throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
+      );
 
   return <div ref={scrollContainerRef}>{children}</div>;
 };
