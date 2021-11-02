@@ -1,14 +1,33 @@
 {
   "name": "react-ui-scrollspy",
   "version": "1.0.2",
-  "description": "## Comands",
+  "description": "Simple, Easy To Use and Customisable ScrollSpy component for react with callback, typescript, throttle support among others",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w"
   },
-  "files": [
-    "dist"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pettiboy/react-ui-scrollspy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pettiboy/react-ui-scrollspy/issues"
+  },
+  "homepage": "https://github.com/pettiboy/react-ui-scrollspy#readme",
+  "author": "Hussain Pettiwala",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "react-component",
+    "ui",
+    "typescript",
+    "component",
+    "onscroll",
+    "scroll",
+    "spy",
+    "performant",
+    "scrollspy"
   ],
   "peerDependencies": {
     "react": "^17.0.2",
@@ -25,14 +44,7 @@
     "rollup-plugin-typescript2": "^0.30.0",
     "typescript": "^4.4.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pettiboy/react-ui-scrollspy.git"
-  },
-  "author": "Hussain Pettiwala",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pettiboy/react-ui-scrollspy/issues"
-  },
-  "homepage": "https://github.com/pettiboy/react-ui-scrollspy#readme"
+  "files": [
+    "dist"
+  ]
 }
