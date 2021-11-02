@@ -1,6 +1,7 @@
 import Center from "./components/Center/Center";
 import Navigation from "./components/Navigation/Navigation";
 import ScrollSpy from "react-ui-scrollspy";
+import Buttons from "./components/Buttons/Buttons";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <h1>Green</h1>
         </Center>
       </ScrollSpy>
+
+      <Buttons />
     </div>
   );
 }

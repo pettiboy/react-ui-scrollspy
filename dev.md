@@ -22,7 +22,3 @@ git commit -m "🚀 RELEASE: "
 git commit -m "🤖 TEST: "
 git commit -m "‼️ BREAKING: "
 ```
-
-## TODO
-
-- [ ] view on github button on website
