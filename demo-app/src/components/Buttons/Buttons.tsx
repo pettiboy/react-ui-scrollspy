@@ -11,7 +11,11 @@ const Buttons = (props: Props) => {
     >
       <div className={"button button-size"}>
         <div style={{ marginRight: 10, marginTop: 5 }}>
-          <img src="/assets/gh-logo.png" height={30} alt="github-logo" />
+          <img
+            src={`${process.env.PUBLIC_URL}/assets/gh-logo.png`}
+            height={30}
+            alt="github-logo"
+          />
         </div>
         <div>View On Github</div>
         <div style={{ marginLeft: 10 }}>
