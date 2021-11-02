@@ -47,7 +47,10 @@ var throttle = function (callback, limit) {
 var ScrollSpy = function (_a) {
     var children = _a.children, navContainerRef = _a.navContainerRef, _b = _a.scrollThrottle, scrollThrottle = _b === void 0 ? 300 : _b;
     var scrollContainerRef = React.useRef(null);
-    var _c = React.useState(), navContainerItems = _c[0], setNavContainerItems = _c[1];
+    var _c = React.useState(), navContainerItems = _c[0], setNavContainerItems = _c[1]; // prettier-ignore
+    // keeps track of the Id in navcontainer which is active
+    // so as to not update classLists unless it has been updated
+    var prevIdTracker = React.useRef("");
     // To get the nav container items depending on whether the parent ref for the nav container is passed or not
     React.useEffect(function () {
         var _a;
@@ -70,6 +73,7 @@ var ScrollSpy = function (_a) {
         if (!(scrollParentContainer && navContainerItems))
             return;
         var _loop_1 = function (i) {
+            // get child element
             var child = scrollParentContainer.children.item(i);
             if (!child)
                 return "continue";
@@ -78,21 +82,35 @@ var ScrollSpy = function (_a) {
             if (isVisible(useChild)) {
                 // if so, get its ID
                 var changeHighlightedItemId_1 = useChild.id;
+                // if the element was same as the one currently active ignore it
+                if (prevIdTracker.current === changeHighlightedItemId_1)
+                    return { value: void 0 };
                 // now loop over each element in the nav Container
                 navContainerItems.forEach(function (el) {
-                    // remove the "active" class from all of them
-                    el.classList.remove("active-scroll-spy");
                     var attrId = el.getAttribute("data-to-scrollspy-id");
-                    // and see if its ID matches the ID we got from the viewport
-                    if (attrId === changeHighlightedItemId_1) {
+                    // if the element contains 'active' the class remove it
+                    if (el.classList.contains("active-scroll-spy")) {
+                        el.classList.remove("active-scroll-spy");
+                    }
+                    // check if its ID matches the ID we got from the viewport
+                    // also make sure it does not already contain the 'active' class
+                    if (attrId === changeHighlightedItemId_1 &&
+                        !el.classList.contains("active-scroll-spy")) {
                         el.classList.add("active-scroll-spy");
+                        prevIdTracker.current = changeHighlightedItemId_1;
                         window.history.pushState({}, "", "#" + changeHighlightedItemId_1);
                     }
                 });
+                return "break";
             }
         };
+        // loop over all children in scroll container
         for (var i = 0; i < scrollParentContainer.children.length; i++) {
-            _loop_1(i);
+            var state_1 = _loop_1(i);
+            if (typeof state_1 === "object")
+                return state_1.value;
+            if (state_1 === "break")
+                break;
         }
     };
     window.addEventListener("scroll", throttle(checkAndUpdateActiveScrollSpy, scrollThrottle));

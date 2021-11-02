@@ -85,6 +85,7 @@ const ScrollSpy = ({
           ) {
             el.classList.add("active-scroll-spy");
 
+            console.log("update to", changeHighlightedItemId);
             prevIdTracker.current = changeHighlightedItemId;
             window.history.pushState({}, "", `#${changeHighlightedItemId}`);
           }

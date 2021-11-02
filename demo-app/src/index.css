@@ -15,6 +15,7 @@ code {
 .active-scroll-spy {
   background-color: yellowgreen;
   border-radius: 15px;
+  transition: all 0.5s;
 }
 .ss-item {
   padding: 30px;

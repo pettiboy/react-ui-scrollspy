@@ -1,13 +1,14 @@
 import Center from "./components/Center/Center";
 import Navigation from "./components/Navigation/Navigation";
 import ScrollSpy from "react-ui-scrollspy";
+import ScrollSpyDev from "./components/src";
 
 function App() {
   return (
     <div>
       <Navigation />
 
-      <ScrollSpy scrollThrottle={100}>
+      <ScrollSpyDev scrollThrottle={100}>
         <Center id="orange" backgroundColor={"orange"}>
           <h1>Orange</h1>
         </Center>
@@ -20,7 +21,7 @@ function App() {
         <Center id="green" backgroundColor={"green"}>
           <h1>Green</h1>
         </Center>
-      </ScrollSpy>
+      </ScrollSpyDev>
     </div>
   );
 }

@@ -37,6 +37,7 @@ yarn add react-ui-scrollspy
 
 2. Wrap the elements you want to spy on in the `<ScrollSpy>` component.
 
+<!-- prettier-ignore -->
 ```tsx
 import ScrollSpy from "react-ui-scrollspy";
 
@@ -53,7 +54,7 @@ import ScrollSpy from "react-ui-scrollspy";
     voluptatibus non fuga eos magni natus vel, rerum excepturi expedita.
     Tempore, vero!
   </div>
-</ScrollSpy>;
+</ScrollSpy>
 ```
 
 3. Write styles for when the navigation element which is active in your `index.css`
