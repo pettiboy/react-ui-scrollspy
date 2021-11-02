@@ -13,11 +13,13 @@ interface ScrollSpyProps {
   children: ReactNode;
   navContainerRef?: MutableRefObject<HTMLDivElement | null>;
   scrollThrottle?: number;
+  onUpdateCallback?: (id: string) => void;
 }
 
 const ScrollSpy = ({
   children,
   navContainerRef,
+  onUpdateCallback,
   scrollThrottle = 300,
 }: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -85,7 +87,10 @@ const ScrollSpy = ({
           ) {
             el.classList.add("active-scroll-spy");
 
-            console.log("update to", changeHighlightedItemId);
+            if (onUpdateCallback) {
+              onUpdateCallback(changeHighlightedItemId);
+            }
+
             prevIdTracker.current = changeHighlightedItemId;
             window.history.pushState({}, "", `#${changeHighlightedItemId}`);
           }

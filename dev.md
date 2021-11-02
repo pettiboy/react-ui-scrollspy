@@ -8,3 +8,11 @@ npm link
 cd demo-app
 npm link react-ui-scrollspy
 ```
+
+- [ ] callbacks
+- [ ] on scroll top and onscrollbottom fix
+- [ ] deploy test website on github pages
+- [ ] offset props
+- [ ] customise data attributes
+- [ ] description, keywords
+- [ ] changelog
