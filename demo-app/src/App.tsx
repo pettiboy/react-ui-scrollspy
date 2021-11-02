@@ -1,9 +1,9 @@
 import Center from "./components/Center/Center";
 import Navigation from "./components/Navigation/Navigation";
 // eslint-disable-next-line
-import ScrollSpy from "react-ui-scrollspy";
+// import ScrollSpy from "react-ui-scrollspy";
 // eslint-disable-next-line
-import ScrollSpyDev from "./components/src";
+import ScrollSpy from "./components/src";
 
 function App() {
   return (

@@ -6,9 +6,9 @@
 [![License MIT](https://img.shields.io/badge/license-MIT-orange.svg?style=flat)](https://raw.githubusercontent.com/pettiboy/react-ui-scrollspy/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/pettiboy/react-ui-scrollspy/pulls)
 
-![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 
 </div>
 
@@ -23,6 +23,12 @@ OR
 ```bash
 yarn add react-ui-scrollspy
 ```
+
+## 🎞 Demo
+
+### Try it your self [here](https://pettiboy.github.io/react-ui-scrollspy)!
+
+![ScrollSpy Demo](./demo-app/assets/demo.gif)
 
 ## ⚙️ Usage
 
@@ -66,41 +72,43 @@ import ScrollSpy from "react-ui-scrollspy";
 }
 ```
 
+`NOTE:` See [`demo-app`](./demo-app/src/App.tsx) for example used [here](https://pettiboy.github.io/react-ui-scrollspy).
+
 ## 💡 Props
 
-### Children
+### 🔧 Children
 
 | Attributes | Type        | Description                                        | Default | Required |
 | :--------- | :---------- | :------------------------------------------------- | :------ | :------- |
 | `children` | `ReactNode` | Each direct child `Element` should contain an `id` | -       | yes      |
 
-### Refs
+### 🔧 Refs
 
 | Attributes                 | Type                                              | Description                                                                                                       | Default | Required |
 | :------------------------- | :------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------- | :------ | :------- |
 | `navContainerRef`          | MutableRefObject<br><HTMLDivElement \| null><br/> | `ref` to your navigation container containing items with `data-to-scrollspy-id` attributes                        | -       | no       |
 | `parentScrollContainerRef` | MutableRefObject<br><HTMLDivElement \| null><br/> | If you want to spy only on a particular scrollable `container (Element)` then pass a ref of the same to this prop | -       | no       |
 
-### Throlle
+### 🔧 Throlle
 
 | Attributes       | Type     | Description                                                                                                            | Default | Required |
 | :--------------- | :------- | :--------------------------------------------------------------------------------------------------------------------- | :------ | :------- |
 | `scrollThrottle` | `number` | In `milliseconds` to throttle the `onscroll` event. Lower the number, better the response, higher the performance cost | `300`   | no       |
 
-### Callback
+### 🔧 Callback
 
 | Attributes         | Type                   | Description                                                                                                     | Default | Required |
 | :----------------- | :--------------------- | :-------------------------------------------------------------------------------------------------------------- | :------ | :------- |
 | `onUpdateCallback` | `(id: string) => void` | Executes this function whenever you scroll to an `Element`, callback returns the `id` of that `Element` as well | -       | no       |
 
-### Offsets
+### 🔧 Offsets
 
 | Attributes     | Type     | Description                                                                                                     | Default | Required |
 | :------------- | :------- | :-------------------------------------------------------------------------------------------------------------- | :------ | :------- |
 | `offsetTop`    | `number` | Spy will be fired when it has been scrolled `offsetTop` beyond `50%` to the top of the containing element       | `0`     | no       |
 | `offsetBottom` | `number` | Spy will be fired when it has been scrolled `offsetBottom` beyond `50%` to the bottom of the containing element | `0`     | no       |
 
-### Customize Attributes
+### 🔧 Customize Attributes
 
 | Attributes         | Type     | Description                                                  | Default               | Required |
 | :----------------- | :------- | :----------------------------------------------------------- | :-------------------- | :------- |

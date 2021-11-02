@@ -1,3 +1,3 @@
-import ScrollSpyDev from "./ScrollSpy/ScrollSpy";
+import ScrollSpy from "./ScrollSpy/ScrollSpy";
 
-export default ScrollSpyDev;
+export default ScrollSpy;
