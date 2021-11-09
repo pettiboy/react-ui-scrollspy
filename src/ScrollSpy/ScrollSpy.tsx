@@ -6,7 +6,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { isVisible } from "../utils/isVisible";
 import { throttle } from "../utils/throttle";
 
 interface ScrollSpyProps {
@@ -29,6 +28,8 @@ interface ScrollSpyProps {
   // customize attributes
   useDataAttribute?: string;
   activeClass?: string;
+
+  useBoxMethod?: boolean;
 }
 
 const ScrollSpy = ({
@@ -51,6 +52,8 @@ const ScrollSpy = ({
   // customize attributes
   useDataAttribute = "to-scrollspy-id",
   activeClass = "active-scroll-spy",
+
+  useBoxMethod = false,
 }: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [navContainerItems, setNavContainerItems] = useState<NodeListOf<Element> | undefined>(); // prettier-ignore
@@ -81,6 +84,34 @@ const ScrollSpy = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navContainerItems]);
 
+  const isVisible = (el: HTMLElement) => {
+    if (useBoxMethod) {
+      var rectInView = el.getBoundingClientRect();
+
+      const hitbox_top = window.innerHeight;
+      const element_top = rectInView.top;
+      const element_bottom = rectInView.top + window.innerHeight;
+
+      return hitbox_top < element_bottom && hitbox_top > element_top;
+    } else {
+      const rectInView = el.getBoundingClientRect();
+
+      // this decides how much of the element should be visible
+      const leniency = parentScrollContainerRef?.current
+        ? parentScrollContainerRef?.current.offsetHeight * 0.5
+        : window.innerHeight * 0.5;
+
+      const useHeight = parentScrollContainerRef?.current
+        ? parentScrollContainerRef?.current.offsetHeight
+        : window.innerHeight;
+
+      return (
+        rectInView.top + leniency + offsetTop >= 0 &&
+        rectInView.bottom - leniency - offsetBottom <= useHeight
+      );
+    }
+  };
+
   const checkAndUpdateActiveScrollSpy = () => {
     const scrollParentContainer = scrollContainerRef.current;
 
@@ -92,14 +123,7 @@ const ScrollSpy = ({
       // get child element
       const useChild = scrollParentContainer.children.item(i) as HTMLDivElement;
 
-      const elementIsVisible = parentScrollContainerRef
-        ? isVisible(
-            useChild,
-            offsetTop,
-            offsetBottom,
-            parentScrollContainerRef?.current
-          )
-        : isVisible(useChild, offsetTop, offsetBottom);
+      const elementIsVisible = isVisible(useChild);
 
       // check if the element is in the viewport
       if (elementIsVisible) {

@@ -22,20 +22,6 @@ function _interopNamespace(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
-// to check if the element is in viewport
-var isVisible = function (el, offsetTop, offsetBottom, scrollableComponentRef) {
-    var rectInView = el.getBoundingClientRect();
-    // this decides how much of the element should be visible
-    var leniency = scrollableComponentRef
-        ? scrollableComponentRef.offsetHeight * 0.5
-        : window.innerHeight * 0.5;
-    var useHeight = scrollableComponentRef
-        ? scrollableComponentRef.offsetHeight
-        : window.innerHeight;
-    return (rectInView.top + leniency + offsetTop >= 0 &&
-        rectInView.bottom - leniency - offsetBottom <= useHeight);
-};
-
 var throttle = function (callback, limit) {
     var tick = false;
     return function () {
@@ -86,6 +72,19 @@ var ScrollSpy = function (_a) {
         checkAndUpdateActiveScrollSpy();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navContainerItems]);
+    var isVisible = function (el) {
+        var rectInView = el.getBoundingClientRect();
+        console.warn(scrollContainerRef.current);
+        // this decides how much of the element should be visible
+        var leniency = scrollContainerRef.current
+            ? scrollContainerRef.current.offsetHeight * 0.5
+            : window.innerHeight * 0.5;
+        var useHeight = scrollContainerRef.current
+            ? scrollContainerRef.current.offsetHeight
+            : window.innerHeight;
+        return (rectInView.top + leniency + offsetTop >= 0 &&
+            rectInView.bottom - leniency - offsetBottom <= useHeight);
+    };
     var checkAndUpdateActiveScrollSpy = function () {
         var scrollParentContainer = scrollContainerRef.current;
         // if there are no children, return
@@ -94,11 +93,8 @@ var ScrollSpy = function (_a) {
         var _loop_1 = function (i) {
             // get child element
             var useChild = scrollParentContainer.children.item(i);
-            var elementIsVisible = parentScrollContainerRef
-                ? isVisible(useChild, offsetTop, offsetBottom, parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current)
-                : isVisible(useChild, offsetTop, offsetBottom);
             // check if the element is in the viewport
-            if (elementIsVisible) {
+            if (isVisible(useChild)) {
                 // if so, get its ID
                 var changeHighlightedItemId_1 = useChild.id;
                 // if the element was same as the one currently active ignore it

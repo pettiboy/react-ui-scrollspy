@@ -14,7 +14,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "react-ui-scrollspy": "^2.0.0",
+    "react-ui-scrollspy": "file:react-ui-scrollspy-2.0.0.tgz",
     "typescript": "^4.4.4",
     "web-vitals": "^1.1.2"
   },

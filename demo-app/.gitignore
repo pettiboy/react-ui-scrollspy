@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# ScrollSpy test component
+src/components/src
+
+# packages
+*.tgz
