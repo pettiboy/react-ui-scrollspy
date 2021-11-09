@@ -53,9 +53,9 @@ var ScrollSpy = function (_a) {
     // customize attributes
     _f = _a.useDataAttribute, 
     // customize attributes
-    useDataAttribute = _f === void 0 ? "to-scrollspy-id" : _f, _g = _a.activeClass, activeClass = _g === void 0 ? "active-scroll-spy" : _g;
+    useDataAttribute = _f === void 0 ? "to-scrollspy-id" : _f, _g = _a.activeClass, activeClass = _g === void 0 ? "active-scroll-spy" : _g, _h = _a.useBoxMethod, useBoxMethod = _h === void 0 ? false : _h;
     var scrollContainerRef = React.useRef(null);
-    var _h = React.useState(), navContainerItems = _h[0], setNavContainerItems = _h[1]; // prettier-ignore
+    var _j = React.useState(), navContainerItems = _j[0], setNavContainerItems = _j[1]; // prettier-ignore
     // keeps track of the Id in navcontainer which is active
     // so as to not update classLists unless it has been updated
     var prevIdTracker = React.useRef("");
@@ -73,17 +73,25 @@ var ScrollSpy = function (_a) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navContainerItems]);
     var isVisible = function (el) {
-        var rectInView = el.getBoundingClientRect();
-        console.warn(scrollContainerRef.current);
-        // this decides how much of the element should be visible
-        var leniency = scrollContainerRef.current
-            ? scrollContainerRef.current.offsetHeight * 0.5
-            : window.innerHeight * 0.5;
-        var useHeight = scrollContainerRef.current
-            ? scrollContainerRef.current.offsetHeight
-            : window.innerHeight;
-        return (rectInView.top + leniency + offsetTop >= 0 &&
-            rectInView.bottom - leniency - offsetBottom <= useHeight);
+        if (useBoxMethod) {
+            var rectInView = el.getBoundingClientRect();
+            var hitbox_top = window.innerHeight;
+            var element_top = rectInView.top;
+            var element_bottom = rectInView.top + window.innerHeight;
+            return hitbox_top < element_bottom && hitbox_top > element_top;
+        }
+        else {
+            var rectInView_1 = el.getBoundingClientRect();
+            // this decides how much of the element should be visible
+            var leniency = (parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current)
+                ? (parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current.offsetHeight) * 0.5
+                : window.innerHeight * 0.5;
+            var useHeight = (parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current)
+                ? parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current.offsetHeight
+                : window.innerHeight;
+            return (rectInView_1.top + leniency + offsetTop >= 0 &&
+                rectInView_1.bottom - leniency - offsetBottom <= useHeight);
+        }
     };
     var checkAndUpdateActiveScrollSpy = function () {
         var scrollParentContainer = scrollContainerRef.current;
@@ -93,8 +101,9 @@ var ScrollSpy = function (_a) {
         var _loop_1 = function (i) {
             // get child element
             var useChild = scrollParentContainer.children.item(i);
+            var elementIsVisible = isVisible(useChild);
             // check if the element is in the viewport
-            if (isVisible(useChild)) {
+            if (elementIsVisible) {
                 // if so, get its ID
                 var changeHighlightedItemId_1 = useChild.id;
                 // if the element was same as the one currently active ignore it

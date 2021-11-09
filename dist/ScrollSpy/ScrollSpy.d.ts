@@ -9,6 +9,7 @@ interface ScrollSpyProps {
     offsetBottom?: number;
     useDataAttribute?: string;
     activeClass?: string;
+    useBoxMethod?: boolean;
 }
-declare const ScrollSpy: ({ children, navContainerRef, parentScrollContainerRef, scrollThrottle, onUpdateCallback, offsetTop, offsetBottom, useDataAttribute, activeClass, }: ScrollSpyProps) => JSX.Element;
+declare const ScrollSpy: ({ children, navContainerRef, parentScrollContainerRef, scrollThrottle, onUpdateCallback, offsetTop, offsetBottom, useDataAttribute, activeClass, useBoxMethod, }: ScrollSpyProps) => JSX.Element;
 export default ScrollSpy;

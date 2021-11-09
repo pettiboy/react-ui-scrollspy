@@ -57,6 +57,7 @@ npm login --registry=https://npm.pkg.github.com/
 ```
 
 ```bash
+npm run build
 npm publish
 ```
 
@@ -79,5 +80,6 @@ npm login
 ```
 
 ```bash
+npm run build
 npm publish
 ```
