@@ -53,7 +53,7 @@ var ScrollSpy = function (_a) {
     // customize attributes
     _f = _a.useDataAttribute, 
     // customize attributes
-    useDataAttribute = _f === void 0 ? "to-scrollspy-id" : _f, _g = _a.activeClass, activeClass = _g === void 0 ? "active-scroll-spy" : _g, _h = _a.useBoxMethod, useBoxMethod = _h === void 0 ? false : _h;
+    useDataAttribute = _f === void 0 ? "to-scrollspy-id" : _f, _g = _a.activeClass, activeClass = _g === void 0 ? "active-scroll-spy" : _g, _h = _a.useBoxMethod, useBoxMethod = _h === void 0 ? true : _h;
     var scrollContainerRef = React.useRef(null);
     var _j = React.useState(), navContainerItems = _j[0], setNavContainerItems = _j[1]; // prettier-ignore
     // keeps track of the Id in navcontainer which is active
@@ -73,15 +73,18 @@ var ScrollSpy = function (_a) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navContainerItems]);
     var isVisible = function (el) {
+        var rectInView = el.getBoundingClientRect();
         if (useBoxMethod) {
-            var rectInView = el.getBoundingClientRect();
-            var hitbox_top = window.innerHeight;
+            var useHeight = (parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current)
+                ? parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current.offsetHeight
+                : window.innerHeight;
+            var hitbox_top = useHeight;
             var element_top = rectInView.top;
-            var element_bottom = rectInView.top + window.innerHeight;
-            return hitbox_top < element_bottom && hitbox_top > element_top;
+            var element_bottom = rectInView.top + useHeight;
+            return (hitbox_top < element_bottom + offsetBottom &&
+                hitbox_top > element_top - offsetTop);
         }
         else {
-            var rectInView_1 = el.getBoundingClientRect();
             // this decides how much of the element should be visible
             var leniency = (parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current)
                 ? (parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current.offsetHeight) * 0.5
@@ -89,8 +92,8 @@ var ScrollSpy = function (_a) {
             var useHeight = (parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current)
                 ? parentScrollContainerRef === null || parentScrollContainerRef === void 0 ? void 0 : parentScrollContainerRef.current.offsetHeight
                 : window.innerHeight;
-            return (rectInView_1.top + leniency + offsetTop >= 0 &&
-                rectInView_1.bottom - leniency - offsetBottom <= useHeight);
+            return (rectInView.top + leniency + offsetTop >= 0 &&
+                rectInView.bottom - leniency - offsetBottom <= useHeight);
         }
     };
     var checkAndUpdateActiveScrollSpy = function () {

@@ -1,6 +1,7 @@
 import Center from "../components/Center/Center";
 import Navigation from "../components/Demo1/Navigation";
-import ScrollSpy from "../components/src";
+// import ScrollSpy from "../components/src";
+import ScrollSpy from "react-ui-scrollspy";
 
 interface Props {}
 
@@ -8,7 +9,7 @@ const Demo1 = (props: Props) => {
   return (
     <>
       <Navigation />
-      <ScrollSpy scrollThrottle={100}>
+      <ScrollSpy scrollThrottle={100} useBoxMethod={false}>
         <Center id="orange" backgroundColor={"orange"}>
           <h1>Orange</h1>
         </Center>

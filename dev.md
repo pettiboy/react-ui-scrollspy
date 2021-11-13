@@ -14,10 +14,11 @@ creates a `.tgz`
 ```bash
 npm run build
 npm pack
-mv react-ui-scrollspy-2.0.0.tgz ./demo-app
+mv react-ui-scrollspy-2.1.0.tgz ./demo-app
 cd demo-app
 npm uninstall react-ui-scrollspy
-npm install react-ui-scrollspy-2.0.0.tgz --production
+npm install react-ui-scrollspy-2.1.0.tgz --production
+cd ..
 ```
 
 ## Commit Messages

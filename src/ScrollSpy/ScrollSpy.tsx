@@ -88,11 +88,17 @@ const ScrollSpy = ({
     const rectInView = el.getBoundingClientRect();
 
     if (useBoxMethod) {
-      const hitbox_top = window.innerHeight;
+      const useHeight = parentScrollContainerRef?.current
+        ? parentScrollContainerRef?.current.offsetHeight
+        : window.innerHeight;
+      const hitbox_top = useHeight;
       const element_top = rectInView.top;
-      const element_bottom = rectInView.top + window.innerHeight;
+      const element_bottom = rectInView.top + useHeight;
 
-      return hitbox_top < element_bottom && hitbox_top > element_top;
+      return (
+        hitbox_top < element_bottom + offsetBottom &&
+        hitbox_top > element_top - offsetTop
+      );
     } else {
       // this decides how much of the element should be visible
       const leniency = parentScrollContainerRef?.current

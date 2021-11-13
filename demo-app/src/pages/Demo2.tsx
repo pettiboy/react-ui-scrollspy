@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import Center from "../components/Center/Center";
-import ScrollSpy from "../components/src";
+// import ScrollSpy from "../components/src";
+import ScrollSpy from "react-ui-scrollspy";
 
 interface Props {}
 
@@ -77,10 +78,10 @@ const Demo2 = (props: Props) => {
               // }}
             >
               <ScrollSpy
-                useBoxMethod
                 // parentScrollContainerRef={parentScrollContainerRef}
                 activeClass="ss-active-demo-2"
                 scrollThrottle={100}
+                useBoxMethod
               >
                 <Center id="section-1" backgroundColor="orange" height="150vh">
                   <p>Section 1</p>
