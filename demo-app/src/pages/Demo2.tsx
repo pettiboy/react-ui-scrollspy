@@ -68,9 +68,17 @@ const Demo2 = (props: Props) => {
           </div>
 
           <div className="col-md-8 col-sm-8 col-lg-8 flex-column d-flex justify-content-center p-0">
-            <div ref={parentScrollContainerRef}>
+            <div
+              ref={parentScrollContainerRef}
+              // style={{
+              //   position: "relative",
+              //   overflowY: "scroll",
+              //   height: "50vh",
+              // }}
+            >
               <ScrollSpy
                 useBoxMethod
+                // parentScrollContainerRef={parentScrollContainerRef}
                 activeClass="ss-active-demo-2"
                 scrollThrottle={100}
               >

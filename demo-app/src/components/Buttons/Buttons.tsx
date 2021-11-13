@@ -9,7 +9,7 @@ const Buttons = (props: Props) => {
       href="https://github.com/pettiboy/react-ui-scrollspy/"
       target="_blank"
     >
-      <div className={"button button-size"}>
+      <div className={"button button-size text-dark"}>
         <div style={{ marginRight: 10, marginTop: 5 }}>
           <img
             src={`${process.env.PUBLIC_URL}/assets/gh-logo.png`}

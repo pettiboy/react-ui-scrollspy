@@ -110,11 +110,11 @@ import ScrollSpy from "react-ui-scrollspy";
 
 ### 🔧 Customize Attributes
 
-| Attributes         | Type      | Description                                                                      | Default               | Required |
-| :----------------- | :-------- | :------------------------------------------------------------------------------- | :-------------------- | :------- |
-| `useDataAttribute` | `string`  | To customize the string after `data-`                                            | `"to-scrollspy-id"`   | no       |
-| `activeClass`      | `string`  | To customize the `class` added when the `Element` in view                        | `"active-scroll-spy"` | no       |
-| `useBoxMethod`     | `boolean` | Set to `false` if you want your spy to be active if 50% of that `div` is in view | `true`                | no       |
+| Attributes         | Type      | Description                                                                                              | Default               | Required |
+| :----------------- | :-------- | :------------------------------------------------------------------------------------------------------- | :-------------------- | :------- |
+| `useDataAttribute` | `string`  | To customize the string after `data-`                                                                    | `"to-scrollspy-id"`   | no       |
+| `activeClass`      | `string`  | To customize the `class` added when the `Element` in view                                                | `"active-scroll-spy"` | no       |
+| `useBoxMethod`     | `boolean` | Set to `false` if you want your spy to be active only if more than`50%` of that `div` is in the viewport | `true`                | no       |
 
 ## 📝 Authors
 
