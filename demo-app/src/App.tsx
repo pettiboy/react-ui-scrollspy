@@ -1,31 +1,20 @@
-import Center from "./components/Center/Center";
-import Navigation from "./components/Navigation/Navigation";
-// import ScrollSpy from "react-ui-scrollspy";
-import ScrollSpy from "./components/src/index";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Buttons from "./components/Buttons/Buttons";
+import DummyNav from "./components/NavBar/NavBar";
+import Demo1 from "./pages/Demo1";
+import Demo2 from "./pages/Demo2";
 
 function App() {
   return (
-    <div>
-      <Navigation />
+    <BrowserRouter>
+      <DummyNav />
 
-      <ScrollSpy scrollThrottle={100}>
-        <Center id="orange" backgroundColor={"orange"}>
-          <h1>Orange</h1>
-        </Center>
-        <Center id="brown" backgroundColor={"brown"}>
-          <h1>Brown</h1>
-        </Center>
-        <Center id="blue" backgroundColor={"blue"}>
-          <h1>Blue</h1>
-        </Center>
-        <Center id="green" backgroundColor={"green"}>
-          <h1>Green</h1>
-        </Center>
-      </ScrollSpy>
-
+      <Routes>
+        <Route path="/" element={<Demo1 />} />
+        <Route path="demo-2" element={<Demo2 />} />
+      </Routes>
       <Buttons />
-    </div>
+    </BrowserRouter>
   );
 }
 

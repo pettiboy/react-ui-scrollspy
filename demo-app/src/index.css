@@ -18,6 +18,7 @@ code {
   transition: all 0.5s;
 }
 .ss-item {
+  color: black;
   padding: 30px;
   margin: 10px;
 }
@@ -42,7 +43,6 @@ code {
 }
 
 a {
-  color: black;
   text-decoration: none;
 }
 /* media query for screens less than 500px */
@@ -55,4 +55,17 @@ a {
     font-size: 17px;
     padding: 15px 25px;
   }
+}
+
+/* demo 2 */
+.ss-item-demo-2 {
+  font-size: larger;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+}
+.ss-active-demo-2 {
+  border-radius: 10px;
+  transition: all 0.5s;
+  background: blue;
 }
