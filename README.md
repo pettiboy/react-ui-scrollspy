@@ -28,7 +28,9 @@ yarn add react-ui-scrollspy
 
 ### Try it your self [here](https://pettiboy.github.io/react-ui-scrollspy)!
 
-![ScrollSpy Demo](./demo-app/assets/demo.gif)
+| [Demo 1](./demo-app/src/pages/Demo1.tsx)       | [Demo 2](./demo-app/src/pages/Demo2.tsx)       |
+| :--------------------------------------------- | :--------------------------------------------- |
+| ![ScrollSpy Demo](./demo-app/assets/demo1.gif) | ![ScrollSpy Demo](./demo-app/assets/demo2.gif) |
 
 ## ⚙️ Usage
 
