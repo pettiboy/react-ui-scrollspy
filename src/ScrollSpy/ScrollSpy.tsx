@@ -53,7 +53,7 @@ const ScrollSpy = ({
   useDataAttribute = "to-scrollspy-id",
   activeClass = "active-scroll-spy",
 
-  useBoxMethod = false,
+  useBoxMethod = true,
 }: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [navContainerItems, setNavContainerItems] = useState<NodeListOf<Element> | undefined>(); // prettier-ignore
@@ -85,17 +85,15 @@ const ScrollSpy = ({
   }, [navContainerItems]);
 
   const isVisible = (el: HTMLElement) => {
-    if (useBoxMethod) {
-      var rectInView = el.getBoundingClientRect();
+    const rectInView = el.getBoundingClientRect();
 
+    if (useBoxMethod) {
       const hitbox_top = window.innerHeight;
       const element_top = rectInView.top;
       const element_bottom = rectInView.top + window.innerHeight;
 
       return hitbox_top < element_bottom && hitbox_top > element_top;
     } else {
-      const rectInView = el.getBoundingClientRect();
-
       // this decides how much of the element should be visible
       const leniency = parentScrollContainerRef?.current
         ? parentScrollContainerRef?.current.offsetHeight * 0.5
