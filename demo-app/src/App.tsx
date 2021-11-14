@@ -6,7 +6,7 @@ import Demo2 from "./pages/Demo2";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <DummyNav />
 
       <Routes>

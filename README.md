@@ -2,7 +2,8 @@
 
 # React UI ScrollSpy
 
-[![npm](https://img.shields.io/npm/v/react-ui-scrollspy.svg)](https://npmjs.com/package/react-ui-scrollspy) [![npm](https://img.shields.io/npm/dm/react-ui-scrollspy.svg)](https://npmjs.com/package/react-ui-scrollspy)
+[![npm](https://img.shields.io/npm/v/react-ui-scrollspy.svg)](https://npmjs.com/package/react-ui-scrollspy)
+[![npm](https://img.shields.io/npm/dy/react-ui-scrollspy.svg)](https://npmjs.com/package/react-ui-scrollspy)
 [![License MIT](https://img.shields.io/badge/license-MIT-orange.svg?style=flat)](https://raw.githubusercontent.com/pettiboy/react-ui-scrollspy/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/pettiboy/react-ui-scrollspy/pulls)
 
@@ -11,6 +12,10 @@
 ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 
 </div>
+
+Customizable and Simple `ScrollSpy` component for `react` with `TypeScript` support.
+
+Make sure you ⭐️ this [`repository`](https://github.com/pettiboy/react-ui-scrollspy) if you find it helpful or interesting :)
 
 ## ✨ Installation
 

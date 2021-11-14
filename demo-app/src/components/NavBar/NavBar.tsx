@@ -6,7 +6,7 @@ const DummyNav = (props: Props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top pt-3 position-sticky bg-dark">
       <div className="container-fluid">
-        <a href="/" className="navbar-brand">
+        <a href={process.env.PUBLIC_URL + "/"} className="navbar-brand">
           React ScrollSpy
         </a>
 
@@ -24,12 +24,18 @@ const DummyNav = (props: Props) => {
         <div className="collapse navbar-collapse" id="navmenu">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item px-2">
-              <a href="/" className="text-decoration-none text-white">
+              <a
+                href={process.env.PUBLIC_URL + "/"}
+                className="text-decoration-none text-white"
+              >
                 Demo 1
               </a>
             </li>
             <li className="nav-item px-2">
-              <a href="/demo-2" className="text-decoration-none text-white">
+              <a
+                href={process.env.PUBLIC_URL + "/demo-2"}
+                className="text-decoration-none text-white"
+              >
                 Demo 2
               </a>
             </li>
