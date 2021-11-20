@@ -80,7 +80,8 @@ const Demo2 = (props: Props) => {
               <ScrollSpy
                 // parentScrollContainerRef={parentScrollContainerRef}
                 activeClass="ss-active-demo-2"
-                scrollThrottle={100}
+                offsetBottom={100}
+                scrollThrottle={80}
                 useBoxMethod
               >
                 <Center id="section-1" backgroundColor="orange" height="150vh">
