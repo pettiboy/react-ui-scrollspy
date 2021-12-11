@@ -1,5 +1,7 @@
 <div align="center">
 
+![ScrollSpy Demo](./demo-app/assets/banner.png)
+
 # React UI ScrollSpy
 
 [![npm](https://img.shields.io/npm/v/react-ui-scrollspy.svg)](https://npmjs.com/package/react-ui-scrollspy)
@@ -11,11 +13,9 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 
-</div>
-
-Customizable and Simple `ScrollSpy` component for `react` with `TypeScript` support.
-
 Make sure you ⭐️ this [`repository`](https://github.com/pettiboy/react-ui-scrollspy) if you find it helpful or interesting :)
+
+</div>
 
 ## ✨ Installation
 
@@ -79,7 +79,25 @@ import ScrollSpy from "react-ui-scrollspy";
 }
 ```
 
-`NOTE:` See [`demo-app`](./demo-app/src/App.tsx) for example used [here](https://pettiboy.github.io/react-ui-scrollspy).
+## 📝 Notes
+
+Incase the ScrollSpy is not working the way you expected, you can try the following:
+
+- Reduce the value of [`scrollThrottle`](#-throttle).
+
+- If your page contains a `navbar` a `header` consider adding the following `CSS`
+
+```css
+html {
+  scroll-padding-top: 120px; /* height of your navbar */
+}
+```
+
+- Try using [`offsets`](#-offsets).
+
+- Go through the [`Props`](#-props).
+
+- See [`demo-app`](./demo-app/src/App.tsx) for example used [here](https://pettiboy.github.io/react-ui-scrollspy).
 
 ## 💡 Props
 
@@ -117,11 +135,13 @@ import ScrollSpy from "react-ui-scrollspy";
 
 ### 🔧 Customize Attributes
 
-| Attributes         | Type      | Description                                                                                              | Default               | Required |
-| :----------------- | :-------- | :------------------------------------------------------------------------------------------------------- | :-------------------- | :------- |
-| `useDataAttribute` | `string`  | To customize the string after `data-`                                                                    | `"to-scrollspy-id"`   | no       |
-| `activeClass`      | `string`  | To customize the `class` added when the `Element` in view                                                | `"active-scroll-spy"` | no       |
-| `useBoxMethod`     | `boolean` | Set to `false` if you want your spy to be active only if more than`50%` of that `div` is in the viewport | `true`                | no       |
+| Attributes         | Type      | Description                                                                                               | Default               | Required |
+| :----------------- | :-------- | :-------------------------------------------------------------------------------------------------------- | :-------------------- | :------- |
+| `useDataAttribute` | `string`  | To customize the string after `data-`                                                                     | `"to-scrollspy-id"`   | no       |
+| `activeClass`      | `string`  | To customize the `class` added when the `Element` in view                                                 | `"active-scroll-spy"` | no       |
+| `useBoxMethod`     | `boolean` | Set to `false` if you want your spy to be active only if more than `50%` of that `div` is in the viewport | `true`                | no       |
+
+##
 
 ## 📝 Authors
 
