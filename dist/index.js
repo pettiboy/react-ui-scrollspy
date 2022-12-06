@@ -53,9 +53,9 @@ var ScrollSpy = function (_a) {
     // customize attributes
     _f = _a.useDataAttribute, 
     // customize attributes
-    useDataAttribute = _f === void 0 ? "to-scrollspy-id" : _f, _g = _a.activeClass, activeClass = _g === void 0 ? "active-scroll-spy" : _g, _h = _a.useBoxMethod, useBoxMethod = _h === void 0 ? true : _h;
+    useDataAttribute = _f === void 0 ? "to-scrollspy-id" : _f, _g = _a.activeClass, activeClass = _g === void 0 ? "active-scroll-spy" : _g, _h = _a.useBoxMethod, useBoxMethod = _h === void 0 ? true : _h, _j = _a.updateHistoryStack, updateHistoryStack = _j === void 0 ? true : _j;
     var scrollContainerRef = React.useRef(null);
-    var _j = React.useState(), navContainerItems = _j[0], setNavContainerItems = _j[1]; // prettier-ignore
+    var _k = React.useState(), navContainerItems = _k[0], setNavContainerItems = _k[1]; // prettier-ignore
     // keeps track of the Id in navcontainer which is active
     // so as to not update classLists unless it has been updated
     var prevIdTracker = React.useRef("");
@@ -128,7 +128,9 @@ var ScrollSpy = function (_a) {
                             onUpdateCallback(changeHighlightedItemId_1);
                         }
                         prevIdTracker.current = changeHighlightedItemId_1;
-                        window.history.pushState({}, "", "#" + changeHighlightedItemId_1);
+                        if (updateHistoryStack) {
+                            window.history.pushState({}, "", "#" + changeHighlightedItemId_1);
+                        }
                     }
                 });
                 return "break";

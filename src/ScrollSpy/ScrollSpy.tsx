@@ -30,6 +30,7 @@ interface ScrollSpyProps {
   activeClass?: string;
 
   useBoxMethod?: boolean;
+  updateHistoryStack?: boolean;
 }
 
 const ScrollSpy = ({
@@ -54,6 +55,7 @@ const ScrollSpy = ({
   activeClass = "active-scroll-spy",
 
   useBoxMethod = true,
+  updateHistoryStack = true,
 }: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [navContainerItems, setNavContainerItems] = useState<NodeListOf<Element> | undefined>(); // prettier-ignore
@@ -159,7 +161,9 @@ const ScrollSpy = ({
             }
 
             prevIdTracker.current = changeHighlightedItemId;
-            window.history.pushState({}, "", `#${changeHighlightedItemId}`);
+            if (updateHistoryStack){
+              window.history.pushState({}, "", `#${changeHighlightedItemId}`);
+            }
           }
         });
         break;
