@@ -36,26 +36,25 @@ var throttle = function (callback, limit) {
 };
 
 var ScrollSpy = function (_a) {
-    var _b;
     var children = _a.children, 
     // refs
     navContainerRef = _a.navContainerRef, parentScrollContainerRef = _a.parentScrollContainerRef, 
     // throttle
-    _c = _a.scrollThrottle, 
+    _b = _a.scrollThrottle, 
     // throttle
-    scrollThrottle = _c === void 0 ? 300 : _c, 
+    scrollThrottle = _b === void 0 ? 300 : _b, 
     // callback
     onUpdateCallback = _a.onUpdateCallback, 
     // offsets
-    _d = _a.offsetTop, 
+    _c = _a.offsetTop, 
     // offsets
-    offsetTop = _d === void 0 ? 0 : _d, _e = _a.offsetBottom, offsetBottom = _e === void 0 ? 0 : _e, 
+    offsetTop = _c === void 0 ? 0 : _c, _d = _a.offsetBottom, offsetBottom = _d === void 0 ? 0 : _d, 
     // customize attributes
-    _f = _a.useDataAttribute, 
+    _e = _a.useDataAttribute, 
     // customize attributes
-    useDataAttribute = _f === void 0 ? "to-scrollspy-id" : _f, _g = _a.activeClass, activeClass = _g === void 0 ? "active-scroll-spy" : _g, _h = _a.useBoxMethod, useBoxMethod = _h === void 0 ? true : _h, _j = _a.updateHistoryStack, updateHistoryStack = _j === void 0 ? true : _j;
+    useDataAttribute = _e === void 0 ? "to-scrollspy-id" : _e, _f = _a.activeClass, activeClass = _f === void 0 ? "active-scroll-spy" : _f, _g = _a.useBoxMethod, useBoxMethod = _g === void 0 ? true : _g, _h = _a.updateHistoryStack, updateHistoryStack = _h === void 0 ? true : _h;
     var scrollContainerRef = React.useRef(null);
-    var _k = React.useState(), navContainerItems = _k[0], setNavContainerItems = _k[1]; // prettier-ignore
+    var _j = React.useState(), navContainerItems = _j[0], setNavContainerItems = _j[1]; // prettier-ignore
     // keeps track of the Id in navcontainer which is active
     // so as to not update classLists unless it has been updated
     var prevIdTracker = React.useRef("");
@@ -145,12 +144,15 @@ var ScrollSpy = function (_a) {
                 break;
         }
     };
-    // listen for scroll event
-    parentScrollContainerRef
-        ? // if ref for scrollable div is provided
-            (_b = parentScrollContainerRef.current) === null || _b === void 0 ? void 0 : _b.addEventListener("scroll", throttle(checkAndUpdateActiveScrollSpy, scrollThrottle))
-        : // else listen for scroll in window
-            window.addEventListener("scroll", throttle(checkAndUpdateActiveScrollSpy, scrollThrottle));
+    React.useEffect(function () {
+        var _a;
+        // listen for scroll event
+        parentScrollContainerRef
+            ? // if ref for scrollable div is provided
+                (_a = parentScrollContainerRef.current) === null || _a === void 0 ? void 0 : _a.addEventListener("scroll", throttle(checkAndUpdateActiveScrollSpy, scrollThrottle))
+            : // else listen for scroll in window
+                window.addEventListener("scroll", throttle(checkAndUpdateActiveScrollSpy, scrollThrottle));
+    });
     return React__namespace.createElement("div", { ref: scrollContainerRef }, children);
 };
 

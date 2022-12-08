@@ -171,18 +171,20 @@ const ScrollSpy = ({
     }
   };
 
+  useEffect(() => {
   // listen for scroll event
   parentScrollContainerRef
-    ? // if ref for scrollable div is provided
-      parentScrollContainerRef.current?.addEventListener(
-        "scroll",
-        throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
-      )
-    : // else listen for scroll in window
-      window.addEventListener(
-        "scroll",
-        throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
-      );
+  ? // if ref for scrollable div is provided
+    parentScrollContainerRef.current?.addEventListener(
+      "scroll",
+      throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
+    )
+  : // else listen for scroll in window
+    window.addEventListener(
+      "scroll",
+      throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
+    );
+  })
 
   return <div ref={scrollContainerRef}>{children}</div>;
 };
