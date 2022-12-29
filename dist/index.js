@@ -62,8 +62,8 @@ var ScrollSpy = function (_a) {
     React.useEffect(function () {
         var _a;
         navContainerRef
-            ? setNavContainerItems((_a = navContainerRef.current) === null || _a === void 0 ? void 0 : _a.querySelectorAll("[data-" + useDataAttribute + "]"))
-            : setNavContainerItems(document.querySelectorAll("[data-" + useDataAttribute + "]"));
+            ? setNavContainerItems((_a = navContainerRef.current) === null || _a === void 0 ? void 0 : _a.querySelectorAll("[data-".concat(useDataAttribute, "]")))
+            : setNavContainerItems(document.querySelectorAll("[data-".concat(useDataAttribute, "]")));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navContainerRef]);
     // fire once after nav container items are set
@@ -113,7 +113,7 @@ var ScrollSpy = function (_a) {
                     return { value: void 0 };
                 // now loop over each element in the nav Container
                 navContainerItems.forEach(function (el) {
-                    var attrId = el.getAttribute("data-" + useDataAttribute);
+                    var attrId = el.getAttribute("data-".concat(useDataAttribute));
                     // if the element contains 'active' the class remove it
                     if (el.classList.contains(activeClass)) {
                         el.classList.remove(activeClass);
@@ -128,7 +128,7 @@ var ScrollSpy = function (_a) {
                         }
                         prevIdTracker.current = changeHighlightedItemId_1;
                         if (updateHistoryStack) {
-                            window.history.pushState({}, "", "#" + changeHighlightedItemId_1);
+                            window.history.replaceState({}, "", "#".concat(changeHighlightedItemId_1));
                         }
                     }
                 });
