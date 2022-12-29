@@ -30,6 +30,7 @@ interface ScrollSpyProps {
   activeClass?: string;
 
   useBoxMethod?: boolean;
+  updateHistoryStack?: boolean;
 }
 
 const ScrollSpy = ({
@@ -54,6 +55,7 @@ const ScrollSpy = ({
   activeClass = "active-scroll-spy",
 
   useBoxMethod = true,
+  updateHistoryStack = true,
 }: ScrollSpyProps) => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [navContainerItems, setNavContainerItems] = useState<NodeListOf<Element> | undefined>(); // prettier-ignore
@@ -159,7 +161,13 @@ const ScrollSpy = ({
             }
 
             prevIdTracker.current = changeHighlightedItemId;
-            window.history.pushState({}, "", `#${changeHighlightedItemId}`);
+            if (updateHistoryStack) {
+              window.history.replaceState(
+                {},
+                "",
+                `#${changeHighlightedItemId}`
+              );
+            }
           }
         });
         break;
@@ -167,18 +175,20 @@ const ScrollSpy = ({
     }
   };
 
-  // listen for scroll event
-  parentScrollContainerRef
-    ? // if ref for scrollable div is provided
-      parentScrollContainerRef.current?.addEventListener(
-        "scroll",
-        throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
-      )
-    : // else listen for scroll in window
-      window.addEventListener(
-        "scroll",
-        throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
-      );
+  useEffect(() => {
+    // listen for scroll event
+    parentScrollContainerRef
+      ? // if ref for scrollable div is provided
+        parentScrollContainerRef.current?.addEventListener(
+          "scroll",
+          throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
+        )
+      : // else listen for scroll in window
+        window.addEventListener(
+          "scroll",
+          throttle(checkAndUpdateActiveScrollSpy, scrollThrottle)
+        );
+  });
 
   return <div ref={scrollContainerRef}>{children}</div>;
 };

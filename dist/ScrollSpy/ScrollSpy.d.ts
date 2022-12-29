@@ -10,6 +10,7 @@ interface ScrollSpyProps {
     useDataAttribute?: string;
     activeClass?: string;
     useBoxMethod?: boolean;
+    updateHistoryStack?: boolean;
 }
-declare const ScrollSpy: ({ children, navContainerRef, parentScrollContainerRef, scrollThrottle, onUpdateCallback, offsetTop, offsetBottom, useDataAttribute, activeClass, useBoxMethod, }: ScrollSpyProps) => JSX.Element;
+declare const ScrollSpy: ({ children, navContainerRef, parentScrollContainerRef, scrollThrottle, onUpdateCallback, offsetTop, offsetBottom, useDataAttribute, activeClass, useBoxMethod, updateHistoryStack, }: ScrollSpyProps) => JSX.Element;
 export default ScrollSpy;
