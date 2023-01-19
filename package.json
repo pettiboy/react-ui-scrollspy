@@ -1,6 +1,6 @@
 {
   "name": "react-ui-scrollspy",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Simple, Easy To Use and Customisable ScrollSpy component for react with callback, typescript and throttle support among others",
   "main": "dist/index.js",
   "scripts": {
@@ -32,16 +32,16 @@
     "scrollspy"
   ],
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rollup": "^2.59.0",
     "rollup-plugin-typescript2": "^0.31.0",
     "tslib": "^2.4.1",
